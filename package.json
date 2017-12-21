@@ -1,0 +1,11 @@
+{
+  "name": "node-react-cloudinary",
+  "version": "1.0.0",
+  "description": "A simple project to explain how to upload images to cloudinary in a node-react full stack app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
