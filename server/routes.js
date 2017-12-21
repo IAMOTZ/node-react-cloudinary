@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
 
 router.post('/image', parseImageUpload(), (req, res) => {
   if (req.file) {
-    console.log('start uploading')
     uploadImage(req.file)
       .then((result) => {
         res.status(201).json({
@@ -27,7 +26,7 @@ router.post('/image', parseImageUpload(), (req, res) => {
   } else {
     res.status(400).json({
       status: 'failed',
-      message: 'no image file was uploaded'
+      message: 'No image file was uploaded'
     });
   }
 });

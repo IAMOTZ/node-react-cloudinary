@@ -15,6 +15,7 @@ class App extends React.Component {
     }
   }
 
+  // This method is called whenever the user uploads an image
   handleFileDrop = (files) => {
     this.setState({
       image: files[0],
@@ -23,6 +24,7 @@ class App extends React.Component {
     });
   }
 
+  // This method sends the uploaded image to the server
   sendImage = () => {
     if (this.state.image) {
       const data = new FormData();
@@ -39,7 +41,7 @@ class App extends React.Component {
           });
         });
     } else {
-      // Don't send anything when the user has not upload an image
+      // Don't do anything when the user has not upload an image
     }
   }
 
