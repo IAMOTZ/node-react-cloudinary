@@ -4,7 +4,8 @@
   "description": "A simple project to explain how to upload images to cloudinary in a node-react full stack app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run react:pro && babel-node ./server/server.js",
+    "server:dev": "npm run react:pro && nodemon ./server/server.js --exec babel-node",     
     "react:dev": "webpack-dev-server --content-base src --inline --hot",
     "react:pro": "webpack"
   },
@@ -20,6 +21,9 @@
     "react-dropzone": "^4.2.3",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   },
   "author": "",
   "license": "ISC"
