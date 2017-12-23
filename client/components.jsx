@@ -57,7 +57,7 @@ export const Output = (props) => {
         <p className="d5">Image uploaded!</p>
         <div>
           <span className="h4">Url:</span>&nbsp;
-          <a href={props.imageUrl}>{props.imageUrl}</a>
+          <a href={props.imageUrl} target="blank">{props.imageUrl}</a>
         </div>
       </div>
     );
