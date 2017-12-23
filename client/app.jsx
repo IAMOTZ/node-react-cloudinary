@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Dropzone from 'react-dropzone';
 import { sendImageToServer } from './helpers';
+import { TopNav, ImageInput, Output } from './components.jsx';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       image: null,
-      imageName: null,
-      imagePreview: null,
       imageUrl: null,
+      uploading: false,
       error: null,
     }
   }
@@ -18,9 +17,8 @@ class App extends React.Component {
   // This method is called whenever the user uploads an image
   handleFileDrop = (files) => {
     this.setState({
+      imageUrl: null,
       image: files[0],
-      imageName: files[0].name,
-      imagePreview: files[0].preview
     });
   }
 
@@ -29,14 +27,19 @@ class App extends React.Component {
     if (this.state.image) {
       const data = new FormData();
       data.append('image', this.state.image);
+
+      this.setState({ uploading: true });
+      
       sendImageToServer(data)
         .then((response) => {
           this.setState({
-            imageUrl: response.data.imageUrl
+            uploading: false,
+            imageUrl: response.data.imageCloudData.url,
           });
         })
         .catch((error) => {
           this.setState({
+            uploading: false,
             error: error.response.data
           });
         });
@@ -46,30 +49,20 @@ class App extends React.Component {
   }
 
   render() {
-    if (!this.state.imageUrl) {
-      return (
-        <div>
-          <Dropzone
-            multiple={false}
+    return (
+      <div>
+        <TopNav title="Node-React-Cloudinary" />
+        <div className="text-center">
+          <ImageInput
+            image={this.state.image}
+            uploading={this.state.uploading}
             onDrop={this.handleFileDrop}
-            accept="image/jpeg">
-            {
-              this.state.image ?
-                <a href={this.state.imagePreview} target="blank">{this.state.imageName}</a> :
-                <p>Drag and Drop an image or click here to select an image[.jpeg only]</p>
-            }
-          </Dropzone>
-          <button onClick={this.sendImage}>Send to server</button>
+            onSend={this.sendImage}
+          />
+          <Output imageUrl={this.state.imageUrl} />
         </div>
-      );
-    } else {
-      return (
-        <div>
-          <p>Image uplooaded</p>
-          <p>Url: {this.state.imageUrl}</p>
-        </div>
-      );
-    }
+      </div>
+    );
   }
 }
 
