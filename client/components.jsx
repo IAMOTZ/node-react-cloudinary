@@ -16,7 +16,7 @@ export const ImageInput = (props) => {
     return (
       <div className="d-flex flex-column align-items-center">
         <i className="fa fa-spinner fa-pulse fa-3x"></i>
-        <button className="btn btn-disabled mt-3">Send Image</button>
+        <button className="btn btn-disabled mt-3">Sending</button>
       </div>
     );
   } else if (props.image) {
