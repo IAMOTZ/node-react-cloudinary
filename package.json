@@ -4,10 +4,10 @@
   "description": "A simple project to explain how to upload images to cloudinary in a node-react full stack app",
   "main": "index.js",
   "scripts": {
-    "start": "npm run react:pro && babel-node ./server/server.js",
-    "server:dev": "npm run react:pro && nodemon ./server/server.js --exec babel-node",     
-    "react:dev": "webpack-dev-server --content-base src --inline --hot",
-    "react:pro": "webpack"
+    "start": "npm run webpack && babel-node ./server/server.js",
+    "server:dev": "npm run webpack && nodemon ./server/server.js --exec babel-node --watch server",     
+    "webpack:dev": "webpack-dev-server --content-base src --inline --hot",
+    "webpack": "webpack"
   },
   "dependencies": {
     "axios": "^0.17.1",
