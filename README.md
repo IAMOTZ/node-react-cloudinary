@@ -12,12 +12,12 @@ These instructions would get you a copy of this project up and running on your l
 > - Clone this git repository 
 > - Change into the directory 
 > - Use `$ npm install` to install all required dependency packages.
-> - Create a `.env` file to provide all the needed enviromental variable 
-> - - `CLOUDINARY_CLOUD_NAME='your-cloud-name'`
-> - - `CLOUDINARY_API_KEY='yor-api-key'`
-> - - `CLOUDINARY_API_SERCRET='your-api-secret'`
-> - - `CLOUDINARY_CLOUD_FOLDER='folder-name'` (optional)
-> - Run `npm start` to run the application
+> - Create a `.env` file to provide all the needed enviroment variables 
+> - - `CLOUDINARY_CLOUD_NAME=your-cloud-name`
+> - - `CLOUDINARY_API_KEY=yor-api-key`
+> - - `CLOUDINARY_API_SERCRET=your-api-secret`
+> - - `CLOUDINARY_CLOUD_FOLDER=folder-name` (optional)
+> - Run `npm start` to run the application on port 3000
 > - Run `npm run webpack:dev` to run the application for react development(make sure to start the server first)
 > - Run `npm run server:dev` to run the application for server side development
 
