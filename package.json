@@ -2,22 +2,21 @@
   "name": "node-react-cloudinary",
   "version": "1.0.0",
   "description": "A simple project to explain how to upload images to cloudinary in a node-react full stack app",
-  "main": "index.js",
-  "scripts": {
-    "start": "npm run webpack && babel-node ./server/server.js",
-    "server:dev": "npm run webpack && nodemon ./server/server.js --exec babel-node --watch server",     
-    "webpack:dev": "webpack-dev-server --content-base src --inline --hot",
-    "webpack": "webpack"
-  },
+  "main": "webpack.config.js",
   "dependencies": {
     "axios": "^0.17.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
     "cloudinary": "^1.9.1",
-    "dotenv": "^4.0.0",    
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "multer": "^1.3.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-dropzone": "^4.2.3",
@@ -27,6 +26,20 @@
   "devDependencies": {
     "nodemon": "^1.12.1"
   },
-  "author": "",
-  "license": "ISC"
+  "scripts": {
+    "start": "npm run webpack && babel-node ./server/server.js",
+    "server:dev": "npm run webpack && nodemon ./server/server.js --exec babel-node --watch server",
+    "webpack:dev": "webpack-dev-server --content-base src --inline --hot",
+    "webpack": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IAMOTZ/node-react-cloudinary.git"
+  },
+  "author": "ogunniyi tunmise",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IAMOTZ/node-react-cloudinary/issues"
+  },
+  "homepage": "https://github.com/IAMOTZ/node-react-cloudinary#readme"
 }
