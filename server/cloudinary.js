@@ -12,7 +12,7 @@ cloudinary.config({
 
 // This function handle the asynchronous action of uploading an image to cloudinary.
 // The cloudinary.v2.uploader.upload_stream is used because we are sending a buffer, 
-// which the normal cloudinary.v2.upload can't do. More details at ..GitHubPageIssue
+// which the normal cloudinary.v2.upload can't do. More details at https://github.com/cloudinary/cloudinary_npm/issues/130
 export const uploadImage = (image) => {
   const cloudinaryOptions = {
     resource_type: 'raw', 
