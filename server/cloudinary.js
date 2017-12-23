@@ -14,8 +14,13 @@ cloudinary.config({
 // The cloudinary.v2.uploader.upload_stream is used because we are sending a buffer, 
 // which the normal cloudinary.v2.upload can't do. More details at ..GitHubPageIssue
 export const uploadImage = (image) => {
+  const cloudinaryOptions = {
+    resource_type: 'raw', 
+    format: 'jpg',
+    folder: process.env.CLOUDINARY_CLOUD_FOLDER || '',
+  }
   return new Promise((resolve, reject) => {
-    cloudinary.v2.uploader.upload_stream({ resource_type: 'raw' }, function (error, result) {
+    cloudinary.v2.uploader.upload_stream(cloudinaryOptions, function (error, result) {
       if (error) {
         reject(error);
       } else {
