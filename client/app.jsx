@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { sendImageToServer } from './helpers';
-import { TopNav, ImageInput, Output } from './components.jsx';
+import { TopNav, ImageInput, Output } from './components';
 
 class App extends React.Component {
   constructor() {
@@ -14,7 +14,12 @@ class App extends React.Component {
     }
   }
 
-  // This method is called whenever the user uploads an image
+  /**
+   * This method is called immediately a user uploads an image.
+   * Though it is called with an array, the user would be able to upload just one image.
+   * This is because of the option set in the ImageInput component "multiple={flase}"
+   * @param {Array} files An array of all the files uploaded
+   */
   handleFileDrop = (files) => {
     this.setState({
       imageUrl: null,
@@ -22,29 +27,34 @@ class App extends React.Component {
     });
   }
 
-  // This method sends the uploaded image to the server
+  /**
+   * This method sends the image to the server.
+   * If the server upload is sucessful, it update the state accordingly.
+   * If the server upload failed, it update the state and also log the error to console. 
+   */
   sendImage = () => {
-    if (this.state.image) {
-      const data = new FormData();
-      data.append('image', this.state.image);
+    if (this.state.image) { /* If there is an actual image */
+      const data = new FormData();  /* Create a form data */
+      data.append('image', this.state.image); /* Append the image file as "image" */
 
-      this.setState({ uploading: true });
+      this.setState({ uploading: true }); /* Change the uploading state to true */
       
-      sendImageToServer(data)
-        .then((response) => {
-          this.setState({
+      sendImageToServer(data) /* Send the image to the server */
+        .then((response) => { /* If successful */
+          this.setState({ /* Update the state with the link to the image and change uploading state to false */
             uploading: false,
             imageUrl: response.data.imageCloudData.url,
           });
         })
-        .catch((error) => {
-          this.setState({
+        .catch((error) => { /* If there was an error */
+          this.setState({ /* Update the state with the error message and change uploading state to false */
             uploading: false,
             error: error.response.data
           });
+          console.log(`Error uploading image: ${error.response.data}`);
         });
-    } else {
-      // Don't do anything when the user has not upload an image
+    } else {  /* If there is no image */
+      /* Don't do anything */
     }
   }
 

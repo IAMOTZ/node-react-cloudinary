@@ -5,24 +5,34 @@ import routes from './routes';
 
 const server = express();
 
-// This middleware allows cross-origin request.
-// It is kept here so that you can develop react on another port[webpack-dev-server]
-// And also run your server on another port
+/*
+  This middleware enables cross-origin requests.
+  It allows the client and server to run on different ports but still communicate with each other.
+  More detials at https://dzone.com/articles/cors-in-node
+*/
 server.all('*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   next();
 });
 
+/* Log incoming request to console */
 server.use(logger('dev'));
 
+/* Serve the static files */
 server.use(express.static(path.join(__dirname, '..', 'public')));
 
+/* Routing */
 server.use('/', routes);
 
+/* Unknown routes */
 server.use((req, res) => {
-  res.status(401).send('Page not found');
+  res.status(404).send('Page not found');
 })
 
-server.listen(3000, () => {
-  console.log(`App started on port 3000`);
+/* The default port is 3000 */
+const port = process.env.PORT || 3000;
+
+/* Start the applciation */
+server.listen(port, () => {
+  console.log(`App started on port ${port}`);
 });

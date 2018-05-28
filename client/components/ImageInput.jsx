@@ -1,26 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
 
-export const TopNav = (props) => {
-  return (
-    <nav className="navbar bg-primary mb-5">
-      <div className="h5 container text-white justify-content-center">
-        {props.title}
-      </div>
-    </nav>
-  );
-}
-
-export const ImageInput = (props) => {
-  if (props.uploading) {
-    return (
+/**
+ * A react component to accept image input.
+ * @param {Object} props The props to pass to this component.
+ * @returns {JSX} The ImageInput markup in JSX.
+ */
+const ImageInput = (props) => {
+  if (props.uploading) {  /* When the image is uploading, it displays a spinning icon. */
+    return ( /* It displays a spinning icon */
       <div className="d-flex flex-column align-items-center">
         <i className="fa fa-spinner fa-pulse fa-3x"></i>
         <button className="btn btn-disabled mt-3">Sending</button>
       </div>
     );
-  } else if (props.image) {
-    return (
+  } else if (props.image) { /* If an image is selected */
+    return ( /* It displays a priview of that image */
       <div className="d-flex flex-column align-items-center">
         <Dropzone
           multiple={false}
@@ -33,8 +29,8 @@ export const ImageInput = (props) => {
           onClick={props.onSend}>Send Image</button>
       </div>
     )
-  } else {
-    return (
+  } else { /* If nothing has been done */
+    return (/* It tells the user to select an image */
       <div className="d-flex flex-column align-items-center">
         <Dropzone
           multiple={false}
@@ -50,18 +46,15 @@ export const ImageInput = (props) => {
   }
 };
 
-export const Output = (props) => {
-  if (props.imageUrl) {
-    return (
-      <div className="mt-3">
-        <p className="d5">Image uploaded!</p>
-        <div>
-          <span className="h4">Url:</span>&nbsp;
-          <a href={props.imageUrl} target="blank">{props.imageUrl}</a>
-        </div>
-      </div>
-    );
-  } else {
-    return null;
-  }
+ImageInput.propTypes = {
+  image: PropTypes.object,
+  uploading: PropTypes.bool.isRequired,
+  onDrop: PropTypes.func.isRequired,
+  onSend: PropTypes.func.isRequired,
+};
+
+ImageInput.defaultProps = {
+  uploading: false,
 }
+
+export default ImageInput;
