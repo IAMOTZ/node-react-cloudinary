@@ -20,7 +20,7 @@ const ImageInput = (props) => {
       <div className="d-flex flex-column align-items-center">
         <Dropzone
           multiple={false}
-          accept="image/jpeg"
+          accept="image/jpeg, image/jpg, image/png"
           onDrop={props.onDrop}>
           <a href={props.image.preview} target="blank">{props.image.name}</a>
         </Dropzone>
@@ -34,9 +34,9 @@ const ImageInput = (props) => {
       <div className="d-flex flex-column align-items-center">
         <Dropzone
           multiple={false}
-          accept="image/jpeg"
+          accept="image/jpeg, image/jpg, image/png"
           onDrop={props.onDrop}>
-          <p>Drop an image or click to select an image to upload[.jpeg only]</p>
+          <p>Drop an image or click to select an image to upload</p>
         </Dropzone>
         <button
           className="btn btn-primary mt-3"

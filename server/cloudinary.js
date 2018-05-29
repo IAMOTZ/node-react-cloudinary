@@ -21,7 +21,6 @@ cloudinary.config({
 export const uploadImage = (image) => {
   const cloudinaryOptions = {
     resource_type: 'raw', 
-    format: 'jpg',
     folder: process.env.CLOUDINARY_CLOUD_FOLDER || '',
   }
   return new Promise((resolve, reject) => {
