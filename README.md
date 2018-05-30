@@ -26,8 +26,9 @@ Uploading an image to cloudinary from the client side of an application is prett
 These instructions would get you a copy of this project up and running on your local machine.
 
 #### Prerequisite
-- Git
-- Node
+- [Git](https://git-scm.com/downloads)
+- [Node](https://nodejs.org/en/download/)
+- A [Cloudinary](https://cloudinary.com/users/register/free) account
 
 #### Installation
 - Clone this git repository `$ git clone https://github.com/IAMOTZ/node-react-cloudinary.git`
