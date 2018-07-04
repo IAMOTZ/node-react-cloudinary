@@ -1,6 +1,18 @@
 import multer from 'multer';
 
-/* Initialize multer */
+/* 
+  Initialize multer. 
+  You can also specify multer configuraitons here.
+  To limit filesize, you can do something like this:
+  multer({
+    limits: {
+      fileSize: 1 * 1024 * 1024    // Equivalent of 1MB
+    }
+  });
+  NOTE: If you are going to add multer configurations 
+  that can lead to errors, ensure to handle the errors properly.
+  More details on multer configuration here: https://github.com/expressjs/multer
+*/
 const upload = multer();
 
 /*
