@@ -6,15 +6,17 @@ module.exports = {
     path.join(__dirname, '/client/app.jsx'),
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015'],
-          plugins: ['transform-class-properties']
-        },
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-react', '@babel/preset-env'],
+            plugins: ['@babel/plugin-transform-class-properties']
+          }
+        }
       },
     ],
   },
@@ -26,12 +28,17 @@ module.exports = {
     extensions: ['.jsx', '.js'],
   },
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
-    proxy: {
-      '/': {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
+    devMiddleware: {
+      index: false, // specify to enable root proxying
+    },
+    proxy: [
+      {
+        context: ['/'],
         target: 'http://localhost:3000',
-        secure: false,
       }
-    }
+    ]
   }
 };
